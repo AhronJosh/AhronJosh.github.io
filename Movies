@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF=8">
+    <meta http-equiv="X-UA-Compastible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello From The Grade 11 ICT</title>
+</head>
+<body>
+<h1>My Top Movies</h1>
+<ul>
+<li>Fast and Furious</li>
+<li>Spider Man</li>
+<li>Jurassic World</li>
+<li>Jumanji</li>
+<li>Deadpool</li>
+</ul>
+
+<h1>My Top Movies</h1>
+<ol>
+  <li>Fast and Furious</li>
+  <li>Spider Man</li>
+  <li>Jurassic World</li>
+  <li>Jumanji</li>
+  <li>Deadpool</li>
+</ol>
+
+<h1>My Top Movies</h1>
+<dl>
+<dt>Fast and Furious</dt>
+<dd>I love this movie because it have a good story and alot of action</dd>
+<dt>Spider Man</dt>
+<dd>One of my favorites</dd>
+<dt>Jurassic World</dt>
+<dt>Jumanji</dt>
+<dt>Deadpool</dt>
+</dl>
+</body>
+</html>
