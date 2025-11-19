@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transportation Problem Solver - Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="title">
+            <img src="Atom-removebg-preview.png" alt="Quamet Logo" class="title-logo">Quamet Final Project</div>
+        <nav class="nav">
+            <a href="index.html" aria-label="Home">
+                <i class="fas fa-home"></i>
+            </a>
+            <a href="calculation.html" aria-label="Calculation">
+                <i class="fas fa-calculator"></i>
+            </a>
+            <a href="about.html" aria-label="About">
+                <i class="fas fa-info-circle"></i>
+            </a>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Welcome to the Transportation Problem Solver</h1>
+        <p>This website helps you understand and solve transportation problems in operations research. Use the navigation above to explore lessons, calculate solutions, or learn about our group.</p>
+        
+        <h2>What is a Transportation Problem?</h2>
+        <p>The transportation problem is a classic optimization challenge in operations research. It involves finding the most cost-effective way to transport goods from multiple sources (e.g., plants or factories) to multiple destinations (e.g., warehouses or customers), given supply constraints at sources and demand requirements at destinations.</p>
+        
+        <h2>Key Concepts</h2>
+        <ul>
+            <li><strong>Sources and Supplies</strong>: Origins of goods with limited availability.</li>
+            <li><strong>Destinations and Demands</strong>: Endpoints with required quantities.</li>
+            <li><strong>Costs</strong>: The cost per unit to transport from a source to a destination.</li>
+            <li><strong>Feasibility</strong>: Total supply must equal total demand for a balanced problem.</li>
+        </ul>
+        
+        <h2>Methods for Initial Solutions</h2>
+        <p>To solve transportation problems, we often start with an initial feasible solution using methods like:</p>
+        <ul>
+            <li><strong>Northwest Corner Method (NWCM)</strong>: Allocates from the top-left corner of the cost matrix, moving right and down. It's simple but may not be optimal.</li>
+            <li><strong>Least Cost Method (LCM)</strong>: Allocates to the lowest-cost cells first. It often provides a better starting point for optimization.</li>
+        </ul>
+        <p>After finding an initial solution, you can use techniques like the MODI method or stepping-stone method to reach the optimal solution.</p>
+        
+        <h2>Get Started</h2>
+        <p>Head to the <a href="calculation.html">Calculation</a> page to input your data and compute an initial solution using NWCM or LCM!</p>
+    </div>
+</body>
+</html>

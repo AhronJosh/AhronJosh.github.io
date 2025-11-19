@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transportation Problem Solver - Calculation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="calculation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="title">
+            <img src="Atom-removebg-preview.png" alt="Quamet Logo" class="title-logo">Quamet Final Project</div>
+        <nav class="nav">
+            <a href="index.html" aria-label="Home">
+                <i class="fas fa-home"></i>
+            </a>
+            <a href="calculation.html" aria-label="Calculation">
+                <i class="fas fa-calculator"></i>
+            </a>
+            <a href="about.html" aria-label="About">
+                <i class="fas fa-info-circle"></i>
+            </a>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Transportation Problem Solver</h1>
+        <p>Use NorthWest Corner Method (NWCM) or Least Cost Method (LCM) to find an initial feasible solution.</p>
+        
+        <label>Number of Sources (Plants): <input type="number" id="sources" min="1" value="3"></label><br>
+        <label>Number of Destinations (Warehouses): <input type="number" id="destinations" min="1" value="3"></label><br>
+        <button onclick="generateTable()">Generate Table</button>
+        
+        <div id="tableContainer"></div>
+        
+        <button onclick="computeNWCM()">Compute Initial Solution (NWCM)</button>
+        <button onclick="computeLCM()">Compute Initial Solution (LCM)</button>
+        
+        <div id="result"></div>
+    </div>
+
+    <script>
+        let costs = [];
+        let supplies = [];
+        let demands = [];
+        let allocations = [];
+
+        function generateTable() {
+            const sources = parseInt(document.getElementById('sources').value);
+            const destinations = parseInt(document.getElementById('destinations').value);
+            
+            costs = Array.from({length: sources}, () => Array(destinations).fill(0));
+            supplies = Array(sources).fill(0);
+            demands = Array(destinations).fill(0);
+            allocations = Array.from({length: sources}, () => Array(destinations).fill(0));
+            
+            let html = '<table><tr><th></th>';
+            for (let j = 0; j < destinations; j++) {
+                html += `<th>Warehouse ${j+1}</th>`;
+            }
+            html += '<th>Supply</th></tr>';
+            
+            for (let i = 0; i < sources; i++) {
+                html += `<tr><th>Plant ${i+1}</th>`;
+                for (let j = 0; j < destinations; j++) {
+                    html += `<td><input type="number" id="cost-${i}-${j}" placeholder="Cost" min="0" value="0"><br><span id="alloc-${i}-${j}">0</span></td>`;
+                }
+                html += `<td><input type="number" id="supply-${i}" placeholder="Supply" min="0" value="0"></td></tr>`;
+            }
+            
+            html += '<tr><th>Demand</th>';
+            for (let j = 0; j < destinations; j++) {
+                html += `<td><input type="number" id="demand-${j}" placeholder="Demand" min="0" value="0"></td>`;
+            }
+            html += '<td></td></tr></table>';
+            
+            document.getElementById('tableContainer').innerHTML = html;
+        }
+
+        function readInputs() {
+            const sources = parseInt(document.getElementById('sources').value);
+            const destinations = parseInt(document.getElementById('destinations').value);
+            
+            for (let i = 0; i < sources; i++) {
+                supplies[i] = parseInt(document.getElementById(`supply-${i}`).value);
+                for (let j = 0; j < destinations; j++) {
+                    costs[i][j] = parseInt(document.getElementById(`cost-${i}-${j}`).value);
+                }
+            }
+            for (let j = 0; j < destinations; j++) {
+                demands[j] = parseInt(document.getElementById(`demand-${j}`).value);
+            }
+            
+            const totalSupply = supplies.reduce((a, b) => a + b, 0);
+            const totalDemand = demands.reduce((a, b) => a + b, 0);
+            if (totalSupply !== totalDemand) {
+                document.getElementById('result').innerHTML = "Supplies and demands don't match please adjust!";
+                return false;
+            }
+            return true;
+        }
+
+        function computeNWCM() {
+            if (!readInputs()) return;
+            
+            const sources = parseInt(document.getElementById('sources').value);
+            const destinations = parseInt(document.getElementById('destinations').value);
+            
+            // Reset allocations
+            allocations = Array.from({length: sources}, () => Array(destinations).fill(0));
+            
+            // NWCM logic
+            let i = 0, j = 0;
+            let remainingSupplies = [...supplies];
+            let remainingDemands = [...demands];
+            
+            while (i < sources && j < destinations) {
+                const alloc = Math.min(remainingSupplies[i], remainingDemands[j]);
+                allocations[i][j] = alloc;
+                remainingSupplies[i] -= alloc;
+                remainingDemands[j] -= alloc;
+                
+                if (remainingSupplies[i] === 0) i++;
+                else if (remainingDemands[j] === 0) j++;
+                else i++;
+            }
+            
+            updateDisplay(sources, destinations);
+        }
+
+        function computeLCM() {
+            if (!readInputs()) return;
+            
+            const sources = parseInt(document.getElementById('sources').value);
+            const destinations = parseInt(document.getElementById('destinations').value);
+            
+            // Reset allocations
+            allocations = Array.from({length: sources}, () => Array(destinations).fill(0));
+            
+            let remainingSupplies = [...supplies];
+            let remainingDemands = [...demands];
+            let activeRows = Array(sources).fill(true);
+            let activeCols = Array(destinations).fill(true);
+            
+            while (activeRows.some(x => x) && activeCols.some(x => x)) {
+                // Find the minimum cost among active cells
+                let minCost = Infinity;
+                let minI = -1, minJ = -1;
+                for (let i = 0; i < sources; i++) {
+                    if (!activeRows[i]) continue;
+                    for (let j = 0; j < destinations; j++) {
+                        if (!activeCols[j]) continue;
+                        if (costs[i][j] < minCost) {
+                            minCost = costs[i][j];
+                            minI = i;
+                            minJ = j;
+                        }
+                    }
+                }
+                
+                if (minI === -1) break; // No more cells
+                
+                // Allocate
+                const alloc = Math.min(remainingSupplies[minI], remainingDemands[minJ]);
+                allocations[minI][minJ] = alloc;
+                remainingSupplies[minI] -= alloc;
+                remainingDemands[minJ] -= alloc;
+                
+                // Deactivate row or column if exhausted
+                if (remainingSupplies[minI] === 0) activeRows[minI] = false;
+                if (remainingDemands[minJ] === 0) activeCols[minJ] = false;
+            }
+            
+            updateDisplay(sources, destinations);
+        }
+
+        function updateDisplay(sources, destinations) {
+            // Update table display
+            for (let x = 0; x < sources; x++) {
+                for (let y = 0; y < destinations; y++) {
+                    const cell = document.getElementById(`alloc-${x}-${y}`);
+                    cell.textContent = allocations[x][y];
+                    cell.parentElement.classList.toggle('allocated', allocations[x][y] > 0);
+                }
+            }
+            
+            // Calculate total cost with breakdown
+            let total = 0;
+            let breakdown = [];
+            for (let x = 0; x < sources; x++) {
+                for (let y = 0; y < destinations; y++) {
+                    if (allocations[x][y] > 0) {
+                        const term = costs[x][y] * allocations[x][y];
+                        total += term;
+                        breakdown.push(`${costs[x][y]}(${allocations[x][y]})`);
+                    }
+                }
+            }
+            
+            const breakdownStr = breakdown.join(' + ');
+            document.getElementById('result').innerHTML = `Initial Feasible Solution Computed.<br>Total Cost = ${breakdownStr} = ${total}`;
+        }
+    </script>
+</body>
+</html>

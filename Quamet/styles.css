@@ -1,0 +1,116 @@
+body { 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    margin: 0; 
+    padding: 0; 
+    color: #333; 
+}
+
+.header {
+    display: flex;
+    justify-content: space-between; /* Title left, nav right */
+    align-items: center; /* Vertically center items */
+    padding: 10px 20px; /* Padding for spacing */
+    background-color: rgba(48, 46, 46, 0.418); /* Semi-transparent background */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for header */
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: whitesmoke;
+    margin: 0;
+    display: flex; /* Makes the title a flex container for image + text alignment */
+    align-items: center; /* Vertically centers the image and text */
+    gap: 10px; /* Adds space between the image and text */
+}
+
+.title-logo {
+    width: 55px; /* Adjust image width as needed (e.g., 40px for a small logo) */
+    height: 55px; /* Adjust height to match (keeps it square) */
+    object-fit: contain; /* Ensures the image fits without distortion */
+    /* Optional: Add border-radius: 50%; for a circular logo */
+}
+
+.nav {
+    display: flex;
+    gap: 20px; /* Space between buttons */
+    /* No need for justify-content here since header handles it */
+}
+
+.nav a {
+    color: #007bff; /* Default blue for icons */
+    text-decoration: none; 
+    font-weight: bold;
+    padding: 10px 15px; /* Padding for button feel */
+    border-radius: 8px; /* Slight rounding */
+    transition: all 0.3s ease; /* Smooth transitions */
+    display: flex; /* Flex for centering icons */
+    align-items: center;
+    justify-content: center;
+    width: 50px; /* Fixed width for consistency */
+    height: 40px; /* Fixed height for button shape */
+}
+
+.nav a i {
+    font-size: 20px; /* Icon size */
+}
+
+.nav a:hover {
+    background-color: #007bff; /* Green background on hover */
+    color: white; /* White icons on green */
+    transform: scale(1.05); /* Slight grow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+}
+
+.nav a:active {
+    transform: scale(0.95); /* Shrink on click */
+    background-color: #45a049; /* Darker green on press */
+}
+
+.nav a.active {
+    background-color: #4CAF50; /* Green for active */
+    color: white;
+}
+
+/* Responsive: Stack on small screens */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column; /* Stack title and nav vertically */
+        text-align: center; /* Center align for mobile */
+    }
+    .nav {
+        margin-top: 10px; /* Space between title and nav on mobile */
+    }
+}
+
+.container { 
+    background-color: rgba(255, 255, 255, 0.918);
+    padding: 30px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
+    max-width: 900px; 
+    width: 100%; 
+    margin: 20px auto; 
+    text-align: left; 
+}
+
+h1 { 
+    color: #000000; 
+    text-align: center; 
+}
+
+h2 { 
+    color: #333; 
+}
+
+ul { 
+    margin-left: 20px; 
+}
+
+.member { 
+    margin-bottom: 20px; 
+    padding: 10px; 
+    border: 1px solid #ddd; 
+    border-radius: 5px; 
+}

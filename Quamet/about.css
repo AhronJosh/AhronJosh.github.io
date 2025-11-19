@@ -1,0 +1,78 @@
+body { 
+    background: url('background\ 5.jpg'); /* Replace 'images/background.jpg' with your image path */
+    background-size: cover; /* Scales image to cover the entire viewport */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling */
+    background-attachment: fixed; /* Optional: Keeps image fixed during scroll for a parallax effect */
+    /* Remove the old gradient: background: linear-gradient(135deg, #f0f8ff 0%, #e6f7ff 100%); */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    margin: 0; 
+    padding: 0; 
+    color: #333; 
+}
+
+.member {
+    display: flex; /* Makes the image and name sit side-by-side */
+    align-items: center; /* Vertically centers the image and text */
+    margin-bottom: 20px; /* Adds space between each member */
+    padding: 10px; /* Adds some padding around each member */
+    border: 1px solid #ddd; /* Optional: Adds a light border for a card-like look */
+    border-radius: 8px; /* Optional: Rounds the corners */
+    background-color: rgba(15, 15, 15, 0.925); /* Optional: Light background color */
+}
+
+.member-img {
+    width: 250px; /* Sets image width (adjust as needed) */
+    height: 250px; /* Sets image height (adjust as needed) */
+    border-radius: 50%; /* Makes the image circular (optional, for a profile pic look) */
+    margin-right: 15px; /* Adds space between the image and the name */
+    object-fit: cover; /* Ensures the image fits nicely without distortion */
+}
+
+.member-img:hover {
+    transform: scale(1.05); /* Slight grow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+}
+
+.member-info {
+    display: flex; /* Optional: Makes text block flexible */
+    flex-direction: column; /* Stacks text vertically */
+}
+.member-info h3 {
+    margin: 0 0 5px 0; /* Small margin below Name */
+    font-size: 1.2em; /* Slightly larger for Name */
+}
+.member-info p {
+    margin: 0 0 5px 0; /* Small margin below each detail */
+    font-size: 15px; /* Standard size for other details */
+    color: whitesmoke; /* Subtle color for secondary info */
+}
+
+h3 {
+    font-size: 24px;
+    font-family: 'Times New Roman', Times, serif;
+    color: whitesmoke;
+}
+
+p {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: whitesmoke;
+    margin: 0;
+    display: flex; /* Makes the title a flex container for image + text alignment */
+    align-items: center; /* Vertically centers the image and text */
+    gap: 10px; /* Adds space between the image and text */
+}
+.title-logo {
+    width: 55px; /* Adjust image width as needed (e.g., 40px for a small logo) */
+    height: 55px; /* Adjust height to match (keeps it square) */
+    object-fit: contain; /* Ensures the image fits without distortion */
+    /* Optional: Add border-radius: 50%; for a circular logo */
+}

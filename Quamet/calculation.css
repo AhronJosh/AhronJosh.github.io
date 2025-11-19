@@ -1,0 +1,109 @@
+body { 
+    background-image: url('background\ 5.jpg'); /* Replace 'images/background.jpg' with your image path */
+    background-size: cover; /* Scales image to cover the entire viewport */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling */
+    background-attachment: fixed; /* Optional: Keeps image fixed during scroll for a parallax effect */
+    /* Remove the old gradient: background: linear-gradient(135deg, #f0f8ff 0%, #e6f7ff 100%); */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    margin: 0; 
+    padding: 0; 
+    color: #333; 
+}
+
+.container { 
+    text-align: center; 
+    margin-top: 60px; /* Increase to account for fixed header (was 60px) */
+    /* Remove or adjust if header isn't fixed */
+}
+
+table { 
+    border-collapse: collapse; 
+    margin: 20px auto; 
+    width: 100%; 
+}
+
+td, th { 
+    border: 1px solid #ddd; 
+    padding: 12px; 
+    text-align: center; 
+}
+
+th { 
+    background-color: #f2f2f2; 
+    font-weight: bold; 
+}
+
+input { 
+    width: 60px; 
+    padding: 5px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+}
+
+.allocated { 
+    border: 3px solid #ff5722; 
+    background-color: #ffebee; 
+    font-weight: bold; 
+}
+
+button { 
+    padding: 12px 24px; 
+    background-color: #4CAF50; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    margin: 10px 5px; 
+    transition: background-color 0.3s; 
+}
+
+button:hover { 
+    background-color: #45a049; 
+}
+
+#result { 
+    margin-top: 20px; 
+    font-weight: bold; 
+    font-size: 18px; 
+    color: #333; 
+}
+
+label { 
+    display: inline-block; 
+    margin: 10px 10px; 
+    font-weight: 500; 
+}
+
+/* Responsive: Stack on small screens */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+    .nav {
+        margin-top: 10px;
+    }
+    .container {
+        margin-top: 120px; /* Adjust for stacked header */
+    }
+}
+
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: whitesmoke;
+    margin: 0;
+    display: flex; /* Makes the title a flex container for image + text alignment */
+    align-items: center; /* Vertically centers the image and text */
+    gap: 10px; /* Adds space between the image and text */
+}
+.title-logo {
+    width: 55px; /* Adjust image width as needed (e.g., 40px for a small logo) */
+    height: 55px; /* Adjust height to match (keeps it square) */
+    object-fit: contain; /* Ensures the image fits without distortion */
+    /* Optional: Add border-radius: 50%; for a circular logo */
+}
