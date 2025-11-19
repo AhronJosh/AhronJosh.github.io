@@ -48,6 +48,12 @@ body {
     color: whitesmoke; /* Subtle color for secondary info */
 }
 
+.member-info:hover p {
+    color: #0077cc; 
+    font-weight: bold;
+}
+
+
 h3 {
     font-size: 24px;
     font-family: 'Times New Roman', Times, serif;
@@ -75,4 +81,5 @@ p {
     height: 55px; /* Adjust height to match (keeps it square) */
     object-fit: contain; /* Ensures the image fits without distortion */
     /* Optional: Add border-radius: 50%; for a circular logo */
+
 }
