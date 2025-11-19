@@ -95,7 +95,7 @@
             const totalSupply = supplies.reduce((a, b) => a + b, 0);
             const totalDemand = demands.reduce((a, b) => a + b, 0);
             if (totalSupply !== totalDemand) {
-                document.getElementById('result').innerHTML = "Supplies and demands don't match please adjust!";
+                document.getElementById('result').innerHTML = "Supplies and Demands don't match please adjust!";
                 return false;
             }
             return true;
@@ -203,4 +203,5 @@
         }
     </script>
 </body>
+
 </html>
